@@ -1,0 +1,1 @@
+gcc main.c menu/tulajok/tulajok.c menu/allatok/allatok.c menu/vizsgalatok/vizsgalatok.c menu/kereses/kereses.c menu/menuvalaszto/menuvalaszto.c -I menu/menuvalaszto  -I menu/allatok -I menu/kereses -I menu/tulajok -I menu/vizsgalatok -o main
