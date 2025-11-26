@@ -1,6 +1,8 @@
 #ifndef VIZSGMUVELETEK_H
 #define VIZSGMUVELETEK_H
 
+#include "../fajlkezeles/fajlkezeles.h"
+
 Vizsgalat *vizsgalat_keres_id(Vizsgalat *eleje, int id);
 void uj_vizsgalat(Vizsgalat **eleje, Haziallat *allatok);
 void vizsgalat_modosit(Vizsgalat *eleje);

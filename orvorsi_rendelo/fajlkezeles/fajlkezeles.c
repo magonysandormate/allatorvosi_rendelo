@@ -232,7 +232,7 @@ Vizsgalat *vizsgalat_betolt(const char *fajlnev, Haziallat *allatok){
 void tulaj_mentes(const char *fajlnev, Tulajdonos *eleje){
     FILE *f = fopen(fajlnev, "w");
     if(!f){
-        pritnf("Nem sikerult megnyitni a fajlt: %s", fajlnev);
+        printf("Nem sikerult megnyitni a fajlt: %s", fajlnev);
         return;
     }
     
@@ -248,7 +248,7 @@ void tulaj_mentes(const char *fajlnev, Tulajdonos *eleje){
 void allat_mentes(const char *fajlnev, Haziallat *eleje){
     FILE *f = fopen(fajlnev, "w");
     if(!f){
-        pritnf("Nem sikerult megnyitni a fajlt: %s", fajlnev);
+        printf("Nem sikerult megnyitni a fajlt: %s", fajlnev);
         return;
     }
     
@@ -264,7 +264,7 @@ void allat_mentes(const char *fajlnev, Haziallat *eleje){
 void vizsgalat_mentes(const char *fajlnev, Vizsgalat *eleje){
     FILE *f = fopen(fajlnev, "w");
     if(!f){
-        pritnf("Nem sikerult megnyitni a fajlt: %s", fajlnev);
+        printf("Nem sikerult megnyitni a fajlt: %s", fajlnev);
         return;
     }
     

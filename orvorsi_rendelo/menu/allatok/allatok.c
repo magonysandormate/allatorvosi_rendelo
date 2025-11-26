@@ -2,6 +2,11 @@
 #include <stdio.h>
 #include "allatok.h"
 #include "../menuvalaszto/menuvalaszto.h"
+#include "../../allatmuveletek/allatmuveletek.h"
+#include "../../fajlkezeles/fajlkezeles.h"
+
+extern Tulajdonos *tulajdonosok;
+extern Haziallat *allatok;
 
 //Az "Állatok kezelése" menüpont és annak almenüi
 void allat_kezeles(){
@@ -18,28 +23,22 @@ void allat_kezeles(){
 
         switch (valasztas){
             case 1:
-                uj_allat();
+                uj_allat(&allatok, tulajdonosok);
+                printf("\nNyomj egy ENTER-t a folytatashoz...");
+                getchar();
                 break;
             case 2:
+                allat_modosit(allatok, tulajdonosok);
+                printf("\nNyomj egy ENTER-t a folytatashoz...");
+                getchar();
                 break;
             case 3:
+                allat_torol(&allatok);
+                printf("\nNyomj egy ENTER-t a folytatashoz...");
+                getchar();
                 break;
             case 4:
                 return;
         }
     }
-}
-
-void uj_allat(){
-    printf("Uj haziallat felvetele\n\n");
-    printf("Neve: ");
-    scanf("");
-    printf("Fajtaja: ");
-    scanf("");
-    printf("Szuletesi datuma (EEEE-HH-NN): ");
-    scanf("");
-    printf("Utolso oltas datuma (EEEE-HH-NN): ");
-    scanf("");
-    printf("Tulajdonos neve: ");
-    scanf("");
 }

@@ -1,6 +1,13 @@
+#include <stdio.h>
 #include <stdbool.h>
 #include "kereses.h"
 #include "../menuvalaszto/menuvalaszto.h"
+#include "../../tulajmuveletek/tulajmuveletek.h"
+#include "../../allatmuveletek/allatmuveletek.h"
+#include "../../fajlkezeles/fajlkezeles.h"
+
+extern Tulajdonos *tulajdonosok;
+extern Haziallat *allatok;
 
 //A "Keresés és listázás" menüpont és annak almenüi
 void kereses_listazas(){
@@ -18,12 +25,24 @@ void kereses_listazas(){
 
         switch (valasztas){
             case 1:
+                tulaj_keres(tulajdonosok);
+                printf("\nNyomj egy ENTER-t a folytatashoz...");
+                getchar();
                 break;
             case 2:
+                tulaj_allatai(allatok);
+                printf("\nNyomj egy ENTER-t a folytatashoz...");
+                getchar();
                 break;
             case 3:
+                allat_keres(allatok);
+                printf("\nNyomj egy ENTER-t a folytatashoz...");
+                getchar();
                 break;
             case 4:
+                regi_oltas(allatok);
+                printf("\nNyomj egy ENTER-t a folytatashoz...");
+                getchar();
                 break;
             case 5:
                 return;
