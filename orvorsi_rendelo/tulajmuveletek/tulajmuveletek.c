@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include "tulajmuveletek.h"
 #include "../fajlkezeles/fajlkezeles.h"
+#include "../debugmalloc.h"
 
 //Új tulajdonos felvétele
 void uj_tulaj(Tulajdonos **eleje){

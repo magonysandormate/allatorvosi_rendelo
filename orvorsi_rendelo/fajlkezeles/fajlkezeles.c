@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "fajlkezeles.h"
+#include "../debugmalloc.h"
 
 //-------Segédfüggvények-------
 

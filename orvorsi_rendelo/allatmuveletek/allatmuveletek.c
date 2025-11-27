@@ -6,6 +6,7 @@
 #include "allatmuveletek.h"
 #include "../fajlkezeles/fajlkezeles.h"
 #include "../tulajmuveletek/tulajmuveletek.h"
+#include "../debugmalloc.h"
 
 //Háziállat keresése Id alapján
 Haziallat *allat_keres_id(Haziallat *eleje, int id){

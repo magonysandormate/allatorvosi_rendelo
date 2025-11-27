@@ -1,1 +1,10 @@
-1;agony Sandor;06307348675;magonys2006@gmail.com
+1;Kovacs Anna;+36301234567;kovacs.anna@gmail.com
+2;Nagy Peter;06209876543;nagy.peter@freemail.hu
+3;Toth Eszter;+36705551234;toth.eszter@citromail.hu
+4;Szabo Gabor;06301239876;szabo.gabor@outlook.com
+5;Horvath Judit;+36209998877;horvath.judit@gmail.com
+6;Varga Laszlo;06705556789;varga.laszlo@yahoo.com
+7;Kiss Monika;+36301112233;kiss.monika@hotmail.com
+8;Molnar Tamas;06209871234;molnar.tamas@gmail.com
+9;Nemeth Petra;+36705554321;nemeth.petra@freemail.hu
+10;Farkas Balazs;06301234321;farkas.balazs@citromail.hu

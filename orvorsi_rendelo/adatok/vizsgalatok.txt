@@ -1,0 +1,10 @@
+1;2024-11-15;Rutinellenorzes, minden rendben;1
+2;2024-11-10;Oltasi ellenorzes, kovetkezo oltas 1 ev mulva;2
+3;2024-10-25;Fogorvosi vizsgalat, fogko eltavolitva;3
+4;2024-11-01;Lab fertozes gyogykezelese;4
+5;2024-09-20;Eveskontroll, tulsuly miatt dieta;5
+6;2024-11-12;Csipezesi ellenorzes, chip mukodik;6
+7;2024-10-05;Nyirok csomorezules gyogyitasa;7
+8;2024-11-08;Szortelenites miatti konzultacio;8
+9;2024-10-30;Setiklas utani labseruleskezelese;9
+10;2024-11-20;Vitamin hiany potlasa, B12 injekció;10

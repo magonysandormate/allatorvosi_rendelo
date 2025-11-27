@@ -9,6 +9,7 @@
 #include "menu/vizsgalatok/vizsgalatok.h"
 #include "menu/menuvalaszto/menuvalaszto.h"
 #include "fajlkezeles/fajlkezeles.h"
+#include "debugmalloc.h"
 
 //Globális adatstruktúrák
 Tulajdonos *tulajdonosok = NULL;

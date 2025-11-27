@@ -5,6 +5,7 @@
 #include "vizsgmuveletek.h"
 #include "../fajlkezeles/fajlkezeles.h"
 #include "../allatmuveletek/allatmuveletek.h"
+#include "../debugmalloc.h"
 
 //Vizsgálat keresése Id alapján
 Vizsgalat *vizsgalat_keres_id(Vizsgalat *eleje, int id){
