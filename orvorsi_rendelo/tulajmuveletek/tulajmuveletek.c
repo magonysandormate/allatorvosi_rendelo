@@ -15,7 +15,6 @@ void uj_tulaj(Tulajdonos **eleje){
     printf("\nUj tulajdonos felvetele\n\n");
 
     printf("Nev: ");
-    getchar();
     fgets(uj->nev, sizeof(uj->nev), stdin);
     uj->nev[strcspn(uj->nev, "\n")] = 0;
 
@@ -57,7 +56,6 @@ void tulaj_modosit(Tulajdonos *eleje){
 
     char nev[50];
     printf("Modositando tulajdonos neve: ");
-    getchar();
     fgets(nev, sizeof(nev), stdin);
     nev[strcspn(nev, "\n")] = 0;
 
@@ -86,9 +84,11 @@ void tulaj_modosit(Tulajdonos *eleje){
            printf("%d. [Id: %d] %s - %s - %s\n", i+1, talalatok[i]->id, talalatok[i]->nev, talalatok[i]->tel, talalatok[i]->email);
         
         int valasztas;
+        char buffer[32];
         do{
             printf("\nMelyiket szeretned modositani (1-%d)? ", talalat_db);
-            scanf("%d", &valasztas);
+            fgets(buffer, sizeof(buffer), stdin);
+            sscanf(buffer, "%d", &valasztas);
             if(valasztas < 1 || valasztas > talalat_db)
                 printf("Ervenytelen valasztas!\n");
         }while(valasztas < 1 || valasztas > talalat_db);
@@ -105,9 +105,11 @@ void tulaj_modosit(Tulajdonos *eleje){
     printf("3. E-mail cim: %s\n", t->email);
 
     int valasztas;
+    char buffer[32];
     do{
         printf("\nMelyik adatot szeretned modositani (1-3)? ");
-        scanf("%d", &valasztas);
+        fgets(buffer, sizeof(buffer), stdin);
+        sscanf(buffer, "%d", &valasztas);
 
         if(valasztas < 1 || valasztas > 3){
             printf("Ervenytelen valasztas!\n");
@@ -152,7 +154,6 @@ void tulaj_torol(Tulajdonos **eleje, Haziallat **allatok){
 
     char nev[50];
     printf("Torlendo tulajdonos neve: ");
-    getchar();
     fgets(nev, sizeof(nev), stdin);
     nev[strcspn(nev, "\n")] = 0;
 
@@ -180,9 +181,11 @@ void tulaj_torol(Tulajdonos **eleje, Haziallat **allatok){
            printf("%d. [Id: %d] %s - %s - %s\n", i+1, talalatok[i]->id, talalatok[i]->nev, talalatok[i]->tel, talalatok[i]->email);
         
         int valasztas;
+        char buffer[32];
         do{
             printf("\nMelyiket szeretned torolni (1-%d, 0=MEGSE)? ", talalat_db);
-            scanf("%d", &valasztas);
+            fgets(buffer, sizeof(buffer), stdin);
+            sscanf(buffer, "%d", &valasztas);
             if(valasztas == 0){
                 printf("Torles megszakitva.\n");
                 return;
@@ -205,11 +208,11 @@ void tulaj_torol(Tulajdonos **eleje, Haziallat **allatok){
         printf("\nFigyelem! Ehhez a tulajdonoshoz %d allat tartozik\nA tulajdonos torlesevel annak minden allata es a hozzajuk tartozo vizsgalatok is torlodnek!", t->allat_db);
     }
 
-    char megerosit;
+    char megerosit[10];
     printf("\nBiztosan torolni szeretned (i/n)? ");
-    scanf(" %c", &megerosit);
+    fgets(megerosit, sizeof(megerosit), stdin);
 
-    if(megerosit == 'i' || megerosit == 'I'){
+    if(megerosit[0] == 'i' || megerosit[0] == 'I'){
         //Először az állatokat töröljük
         if(t->allat_db > 0){
             for(int i = 0; i < t->allat_db; i++){
@@ -271,7 +274,6 @@ void tulaj_keres(Tulajdonos *eleje){
     char nev[50];
     printf("\nTulajdonos adatainak listazasa\n\n");
     printf("\nKeresett tulajdonos neve: ");
-    getchar();
     fgets(nev, sizeof(nev), stdin);
     nev[strcspn(nev, "\n")] = 0;
 
@@ -298,7 +300,6 @@ void tulaj_allatai(Haziallat *allatok){
     printf("Egy tulajdonoshoz tartozo allat(ok) adatai\n\n");
     char nev[50];
     printf("Tulajdonos neve: ");
-    getchar();
     fgets(nev, sizeof(nev), stdin);
     nev[strcspn(nev, "\n")] = 0;
 

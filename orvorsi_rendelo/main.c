@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <signal.h>
 
 #include "menu/allatok/allatok.h"
 #include "menu/kereses/kereses.h"
@@ -89,6 +90,21 @@ void felszabaditas(){
     }
 }
 
+void ctrlc_kezeles(int signum){
+    printf("\n\nKilepes megszakitva...");
+
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
+
+    adat_ment();
+    felszabaditas();
+
+    exit(0);
+}
+
 //Főmenü
 void fomenu(){
     char *menupontok[] = {
@@ -123,6 +139,8 @@ void fomenu(){
 }
 
 int main(){
+    signal(SIGINT, ctrlc_kezeles);
+
     printf("==================================\n");
     printf("=  ALLATORVOSI RENDELO RENDSZER  =\n");
     printf("==================================\n\n");

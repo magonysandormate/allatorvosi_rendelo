@@ -27,7 +27,6 @@ void uj_allat(Haziallat **eleje, Tulajdonos *tulajok){
 
     printf("Uj haziallat felvetele\n\n");
 
-    getchar();
     printf("Nev: ");
     fgets(uj->nev, sizeof(uj->nev), stdin);
     uj->nev[strcspn(uj->nev, "\n")] = 0;
@@ -53,8 +52,10 @@ void uj_allat(Haziallat **eleje, Tulajdonos *tulajok){
     } while(!datum_valid(uj->oltas));
 
     int tulaj_id;
+    char buffer[32];
     printf("Tulajdonos Id-ja: ");
-    scanf("%d", &tulaj_id);
+    fgets(buffer, sizeof(buffer), stdin);
+    sscanf(buffer, "%d", &tulaj_id);
 
     Tulajdonos *t = tulaj_keres_id(tulajok, tulaj_id);
     if(!t){
@@ -87,7 +88,6 @@ void allat_modosit(Haziallat *eleje, Tulajdonos *tulajok){
     
     char nev[50];
     printf("Modositando allat neve: ");
-    getchar();
     fgets(nev, sizeof(nev), stdin);
     nev[strcspn(nev, "\n")] = 0;
 
@@ -114,9 +114,11 @@ void allat_modosit(Haziallat *eleje, Tulajdonos *tulajok){
            printf("%d. [Id: %d] %s - %s\n", i+1, talalatok[i]->id, talalatok[i]->nev, talalatok[i]->szul);
         
         int valasztas;
+        char buffer[32];
         do{
             printf("\nMelyiket szeretned modositani (1-%d)? ", talalat_db);
-            scanf("%d", &valasztas);
+            fgets(buffer, sizeof(buffer), stdin);
+            sscanf(buffer, "%d", &valasztas);
             if(valasztas < 1 || valasztas > talalat_db)
                 printf("Ervenytelen valasztas!\n");
         }while(valasztas < 1 || valasztas > talalat_db);
@@ -134,9 +136,11 @@ void allat_modosit(Haziallat *eleje, Tulajdonos *tulajok){
     printf("4. Utolso oltas datuma: %s\n", h->oltas);
 
     int valasztas;
+    char buffer[32];
     do{
         printf("\nMelyik adatot szeretned modositani (1-4)? ");
-        scanf("%d", &valasztas);
+        fgets(buffer, sizeof(buffer), stdin);
+        sscanf(buffer, "%d", &valasztas);
 
         if(valasztas < 1 || valasztas > 4){
             printf("Ervenytelen valasztas!\n");
@@ -186,7 +190,6 @@ void allat_torol(Haziallat **eleje){
 
     char nev[50];
     printf("Torlendo haziallat neve: ");
-    getchar();
     fgets(nev, sizeof(nev), stdin);
     nev[strcspn(nev, "\n")] = 0;
 
@@ -213,9 +216,11 @@ void allat_torol(Haziallat **eleje){
            printf("%d. [Id: %d] %s - %s\n", i+1, talalatok[i]->id, talalatok[i]->nev, talalatok[i]->szul);
         
         int valasztas;
+        char buffer[32];
         do{
             printf("\nMelyiket szeretned torolni (1-%d, 0=MEGSE)? ", talalat_db);
-            scanf("%d", &valasztas);
+            fgets(buffer, sizeof(buffer), stdin);
+            sscanf(buffer, "%d", &valasztas);
             if(valasztas == 0){
                 printf("Torles megszakitva.\n");
                 return;
@@ -233,11 +238,11 @@ void allat_torol(Haziallat **eleje){
     printf("Nev: %s\n", h->nev);
     printf("Szuletesi datum: %s\n", h->szul);
 
-    char megerosit;
+    char megerosit[10];
     printf("\nBiztosan torolni szeretned (i/n)? ");
-    scanf(" %c", &megerosit);
+    fgets(megerosit, sizeof(megerosit), stdin);
 
-    if(megerosit == 'i' || megerosit == 'I'){
+    if(megerosit[0] == 'i' || megerosit[0] == 'I'){
         //Tulajdonos állat-listájából törlés
         if(h->tulaj){
             Tulajdonos *t = h->tulaj;
@@ -281,7 +286,6 @@ void allat_keres(Haziallat *eleje){
 
     char nev[50];
     printf("Keresett haziallat neve: ");
-    getchar();
     fgets(nev, sizeof(nev), stdin);
     nev[strcspn(nev, "\n")] = 0;
 

@@ -38,8 +38,10 @@ void uj_vizsgalat(Vizsgalat **eleje, Haziallat *allatok){
     uj->megjegyzes[strcspn(uj->megjegyzes, "\n")] = 0;
 
     int allat_id;
+    char buffer[32];
     printf("Haziallat Id-ja: ");
-    scanf("%d", &allat_id);
+    fgets(buffer, sizeof(buffer), stdin);
+    sscanf(buffer, "%d", &allat_id);
 
     Haziallat *h = allat_keres_id(allatok, allat_id);
     if(!h){
@@ -73,7 +75,6 @@ void vizsgalat_modosit(Vizsgalat *eleje){
     char datum[50];
     while(true){
         printf("Modositando vizsgalat datuma (EEEE-HH-NN): ");
-        getchar();
         fgets(datum, sizeof(datum), stdin);
         datum[strcspn(datum, "\n")] = 0;
 
@@ -105,9 +106,11 @@ void vizsgalat_modosit(Vizsgalat *eleje){
            printf("%d. [Id: %d] %s - %s\n", i+1, talalatok[i]->id, talalatok[i]->datum, talalatok[i]->megjegyzes);
         
         int valasztas;
+        char buffer[32];
         do{
-            printf("\nMelyiket szeretned torolni (1-%d, 0=MEGSE)? ", talalat_db);
-            scanf("%d", &valasztas);
+            printf("\nMelyiket szeretned modositani (1-%d, 0=MEGSE)? ", talalat_db);
+            fgets(buffer, sizeof(buffer), stdin);
+            sscanf(buffer, "%d", &valasztas);
             if(valasztas == 0){
                 printf("Torles megszakitva.\n");
                 return;
@@ -126,9 +129,11 @@ void vizsgalat_modosit(Vizsgalat *eleje){
     printf("2. Megjegyzes: %s\n", v->megjegyzes);
 
     int valasztas;
+    char buffer[32];
     do{
         printf("\nMelyik adatot szeretned modositani (1-2)? ");
-        scanf("%d", &valasztas);
+        fgets(buffer, sizeof(buffer), stdin);
+        sscanf(buffer, "%d", &valasztas);
 
         if(valasztas < 1 || valasztas > 2){
             printf("Ervenytelen valasztas!\n");
@@ -165,7 +170,6 @@ void vizsgalat_torol(Vizsgalat **eleje){
     char datum[50];
     while(true){
         printf("Torlendo vizsgalat datuma (EEEE-HH-NN): ");
-        getchar();
         fgets(datum, sizeof(datum), stdin);
         datum[strcspn(datum, "\n")] = 0;
 
@@ -197,9 +201,11 @@ void vizsgalat_torol(Vizsgalat **eleje){
            printf("%d. [Id: %d] %s - %s - Allat: %s\n", i+1, talalatok[i]->id, talalatok[i]->datum, talalatok[i]->megjegyzes, talalatok[i]->allat ? talalatok[i]->allat->nev : "Ismeretlen");
         
         int valasztas;
+        char buffer[32];
         do{
             printf("\nMelyiket szeretned torolni (1-%d, 0=MEGSE)? ", talalat_db);
-            scanf("%d", &valasztas);
+            fgets(buffer, sizeof(buffer), stdin);
+            sscanf(buffer, "%d", &valasztas);
             if(valasztas == 0){
                 printf("Torles megszakitva.\n");
                 return;
@@ -219,11 +225,11 @@ void vizsgalat_torol(Vizsgalat **eleje){
     if(v->allat)
         printf("Allat: %s (Id: %d)\n", v->allat->nev, v->allat->id);
 
-    char megerosit;
+    char megerosit[10];
     printf("\nBiztosan torolni szeretned? (i/n)");
-    scanf(" %c", &megerosit);
+    fgets(megerosit, sizeof(megerosit), stdin);
 
-    if(megerosit == 'i' || megerosit == 'I'){
+    if(megerosit[0] == 'i' || megerosit[0] == 'I'){
         if(v->allat){
             Haziallat *h = v->allat;
             for(int i = 0; i < h->vizsgalat_db; i++){
