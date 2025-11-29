@@ -5,11 +5,8 @@
 #include "../../allatmuveletek/allatmuveletek.h"
 #include "../../fajlkezeles/fajlkezeles.h"
 
-extern Tulajdonos *tulajdonosok;
-extern Haziallat *allatok;
-
 //Az "Állatok kezelése" menüpont és annak almenüi
-void allat_kezeles(){
+void allat_kezeles(Tulajdonos **tulajdonosok, Haziallat **allatok){
     char *menupontok[] = {
         "Uj haziallat felvetele",
         "Haziallat adatainak modositasa",
@@ -23,17 +20,17 @@ void allat_kezeles(){
 
         switch (valasztas){
             case 1:
-                uj_allat(&allatok, tulajdonosok);
+                uj_allat(allatok, *tulajdonosok);
                 printf("\nNyomj egy ENTER-t a folytatashoz...");
                 getchar();
                 break;
             case 2:
-                allat_modosit(allatok, tulajdonosok);
+                allat_modosit(*allatok, *tulajdonosok);
                 printf("\nNyomj egy ENTER-t a folytatashoz...");
                 getchar();
                 break;
             case 3:
-                allat_torol(&allatok);
+                allat_torol(allatok);
                 printf("\nNyomj egy ENTER-t a folytatashoz...");
                 getchar();
                 break;

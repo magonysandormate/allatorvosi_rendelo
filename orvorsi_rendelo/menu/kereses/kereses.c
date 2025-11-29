@@ -6,11 +6,8 @@
 #include "../../allatmuveletek/allatmuveletek.h"
 #include "../../fajlkezeles/fajlkezeles.h"
 
-extern Tulajdonos *tulajdonosok;
-extern Haziallat *allatok;
-
 //A "Keresés és listázás" menüpont és annak almenüi
-void kereses_listazas(){
+void kereses_listazas(Tulajdonos *tulajdonosok, Haziallat *allatok){
     char *menupontok[] = {
         "Tulajdonos keresese es adatainak listazasa",
         "Egy tulajdonoshoz tartozo haziallatok adatainak kilistazasa",

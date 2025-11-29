@@ -5,11 +5,8 @@
 #include "../../vizsgalatmuveletek/vizsgmuveletek.h"
 #include "../../fajlkezeles/fajlkezeles.h"
 
-extern Haziallat *allatok;
-extern Vizsgalat *vizsgalatok;
-
 //A "Vizsgálatok kezelése" menüpont és annak almenüi
-void vizsgalat_kezeles(){
+void vizsgalat_kezeles(Haziallat **allatok, Vizsgalat **vizsgalatok){
     char *menupontok[] = {
         "Uj vizsgalat felvetele",
         "Vizsgalat adatainak modositasa",
@@ -23,17 +20,17 @@ void vizsgalat_kezeles(){
 
         switch (valasztas){
             case 1:
-                uj_vizsgalat(&vizsgalatok, allatok);
+                uj_vizsgalat(vizsgalatok, *allatok);
                 printf("\nNyomj egy ENTER-t a folytatashoz...");
                 getchar();
                 break;
             case 2:
-                vizsgalat_modosit(vizsgalatok);
+                vizsgalat_modosit(*vizsgalatok);
                 printf("\nNyomj egy ENTER-t a folytatashoz...");
                 getchar();
                 break;
             case 3:
-                vizsgalat_torol(&vizsgalatok);
+                vizsgalat_torol(vizsgalatok);
                 printf("\nNyomj egy ENTER-t a folytatashoz...");
                 getchar();
                 break;

@@ -116,7 +116,11 @@ void tulaj_modosit(Tulajdonos *eleje){
     do{
         printf("\nMelyik adatot szeretned modositani (1-3)? ");
         fgets(buffer, sizeof(buffer), stdin);
-        sscanf(buffer, "%d", &valasztas);
+        if(sscanf(buffer, "%d", &valasztas) != 1){
+            printf("Ervenytelen valasztas!\n");
+            valasztas = -1;
+            continue;
+        }
 
         if(valasztas < 1 || valasztas > 3){
             printf("Ervenytelen valasztas!\n");
@@ -148,6 +152,9 @@ void tulaj_modosit(Tulajdonos *eleje){
                         printf("Hibas formatum!\n");
                 } while(!email_valid(t->email));
                 break;
+            default:
+                printf("Ervenytelen valasztas!\n");
+                continue;
         }
 
         printf("Sikeres modositas!\n");
@@ -195,7 +202,11 @@ void tulaj_torol(Tulajdonos **eleje, Haziallat **allatok){
         do{
             printf("\nMelyiket szeretned torolni (1-%d, 0=MEGSE)? ", talalat_db);
             fgets(buffer, sizeof(buffer), stdin);
-            sscanf(buffer, "%d", &valasztas);
+            if(sscanf(buffer, "%d", &valasztas) != 1){
+                printf("Ervenytelen valasztas!\n");
+                valasztas = -1;
+                continue;
+            }
             if(valasztas == 0){
                 printf("Torles megszakitva.\n");
                 return;

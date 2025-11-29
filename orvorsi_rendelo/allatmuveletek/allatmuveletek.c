@@ -48,6 +48,7 @@ void uj_allat(Haziallat **eleje, Tulajdonos *tulajok){
     } while(!datum_valid(uj->szul));
 
     do{
+        getchar();
         printf("Utolso oltas datuma (EEEE-HH-NN): ");
         fgets(uj->oltas, sizeof(uj->oltas), stdin);
         uj->oltas[strcspn(uj->oltas, "\n")] = 0;
@@ -55,6 +56,7 @@ void uj_allat(Haziallat **eleje, Tulajdonos *tulajok){
             printf("Hibas datum formatum!\n");
     } while(!datum_valid(uj->oltas));
 
+    getchar();
     int tulaj_id;
     char buffer[32];
     printf("Tulajdonos Id-ja: ");
@@ -125,7 +127,11 @@ void allat_modosit(Haziallat *eleje, Tulajdonos *tulajok){
         do{
             printf("\nMelyiket szeretned modositani (1-%d)? ", talalat_db);
             fgets(buffer, sizeof(buffer), stdin);
-            sscanf(buffer, "%d", &valasztas);
+            if(sscanf(buffer, "%d", &valasztas) != 1){
+                printf("Ervenytelen valasztas.\n");
+                valasztas = -1;
+                continue;
+            }
             if(valasztas < 1 || valasztas > talalat_db)
                 printf("Ervenytelen valasztas!\n");
         }while(valasztas < 1 || valasztas > talalat_db);
@@ -184,6 +190,9 @@ void allat_modosit(Haziallat *eleje, Tulajdonos *tulajok){
                         printf("Hibas formatum!\n");
                 } while(!datum_valid(h->oltas));
                 break;
+            default:
+                printf("Ervenytelen valasztas!\n");
+                continue;
         }
 
         printf("Sikeres modositas!\n");
@@ -230,7 +239,11 @@ void allat_torol(Haziallat **eleje){
         do{
             printf("\nMelyiket szeretned torolni (1-%d, 0=MEGSE)? ", talalat_db);
             fgets(buffer, sizeof(buffer), stdin);
-            sscanf(buffer, "%d", &valasztas);
+            if(sscanf(buffer, "%d", &valasztas) != 1){
+                printf("Ervenytelen valasztas!\n");
+                valasztas = -1;
+                continue;
+            }
             if(valasztas == 0){
                 printf("Torles megszakitva.\n");
                 return;

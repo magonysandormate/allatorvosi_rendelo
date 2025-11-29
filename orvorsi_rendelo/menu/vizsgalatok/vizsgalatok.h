@@ -1,6 +1,8 @@
 #ifndef VIZSGALATOK_H
 #define VIZSGALATOK_H
 
-void vizsgalat_kezeles();
+#include "../../fajlkezeles/fajlkezeles.h"
+
+void vizsgalat_kezeles(Haziallat **allatok, Vizsgalat **vizsgalatok);
 
 #endif

@@ -5,11 +5,8 @@
 #include "../../tulajmuveletek/tulajmuveletek.h"
 #include "../../fajlkezeles/fajlkezeles.h"
 
-extern Tulajdonos *tulajdonosok;
-extern Haziallat *allatok;
-
 //A "Tulajdonosok kezelése" menüpont és annak almenüi
-void tulaj_kezeles(){
+void tulaj_kezeles(Tulajdonos **tulajdonosok, Haziallat **allatok){
     char *menupontok[] = {
         "Uj tulajdonos felvetele",
         "Tulajdonos adatainak modositasa",
@@ -23,17 +20,17 @@ void tulaj_kezeles(){
 
         switch (valasztas){
             case 1:
-                uj_tulaj(&tulajdonosok);
+                uj_tulaj(tulajdonosok);
                 printf("\nNyomj egy ENTER-t a folytatashoz...");
                 getchar();
                 break;
             case 2:
-                tulaj_modosit(tulajdonosok);
+                tulaj_modosit(*tulajdonosok);
                 printf("\nNyomj egy ENTER-t a folytatashoz...");
                 getchar();
                 break;
             case 3:
-                tulaj_torol(&tulajdonosok, &allatok);
+                tulaj_torol(tulajdonosok, allatok);
                 printf("\nNyomj egy ENTER-t a folytatashoz...");
                 getchar();
                 break;

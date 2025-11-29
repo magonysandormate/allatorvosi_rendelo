@@ -11,11 +11,6 @@
 #include "fajlkezeles/fajlkezeles.h"
 #include "debugmalloc.h"
 
-//Globális adatstruktúrák
-Tulajdonos *tulajdonosok = NULL;
-Haziallat *allatok = NULL;
-Vizsgalat *vizsgalatok = NULL;
-
 //Fájlnevek
 const char *tulajf = "adatok/tulajok.txt";
 const char *allatf = "adatok/allatok.txt";
@@ -60,7 +55,7 @@ void fajl_inic(){
 }
 
 //Adatok mentése
-void adat_ment(){
+void adat_ment(Tulajdonos *tulajdonosok, Haziallat *allatok, Vizsgalat *vizsgalatok){
     printf("\nAdatok mentese...\n");
     tulaj_mentes(tulajf, tulajdonosok);
     allat_mentes(allatf, allatok);
@@ -69,40 +64,42 @@ void adat_ment(){
 }
 
 //Memória felszabadítása
-void felszabaditas(){
-    while(vizsgalatok){
-        Vizsgalat *temp = vizsgalatok;
-        vizsgalatok = vizsgalatok->kov;
+void felszabaditas(Tulajdonos **tulajdonosok, Haziallat **allatok, Vizsgalat **vizsgalatok){
+    while(*vizsgalatok){
+        Vizsgalat *temp = *vizsgalatok;
+        *vizsgalatok = (*vizsgalatok)->kov;
         free(temp);
     }
 
-    while(allatok){
-        Haziallat *temp = allatok;
-        allatok = allatok->kov;
+    while(*allatok){
+        Haziallat *temp = *allatok;
+        *allatok = (*allatok)->kov;
         free(temp->vizsgalatok);
         free(temp);
     }
 
-    while(tulajdonosok){
-        Tulajdonos *temp = tulajdonosok;
-        tulajdonosok = tulajdonosok->kov;
+    while(*tulajdonosok){
+        Tulajdonos *temp = *tulajdonosok;
+        *tulajdonosok = (*tulajdonosok)->kov;
         free(temp->allatok);
         free(temp);
     }
 }
 
-void ctrlc_kezeles(int signum){
-    printf("\n\nKilepes megszakitva...");
+static Tulajdonos **tulajok_ptr = NULL;
+static Haziallat **allatok_ptr = NULL;
+static Vizsgalat **vizsgalatok_ptr = NULL;
 
+void ctrlc_kezeles(int signum){
     konzol_torol();
-    adat_ment();
-    felszabaditas();
+    adat_ment(*tulajok_ptr, *allatok_ptr, *vizsgalatok_ptr);
+    felszabaditas(tulajok_ptr, allatok_ptr, vizsgalatok_ptr);
 
     exit(0);
 }
 
 //Főmenü
-void fomenu(){
+void fomenu(Tulajdonos **tulajdonosok, Haziallat **allatok, Vizsgalat **vizsgalatok){
     char *menupontok[] = {
         "Tulajdonosok kezelese",
         "Allatok kezelese",
@@ -117,16 +114,16 @@ void fomenu(){
 
         switch (valasztas){
             case 1:
-                tulaj_kezeles();
+                tulaj_kezeles(tulajdonosok, allatok);
                 break;
             case 2:
-                allat_kezeles();
+                allat_kezeles(tulajdonosok, allatok);
                 break;
             case 3:
-                vizsgalat_kezeles();
+                vizsgalat_kezeles(allatok, vizsgalatok);
                 break;
             case 4:
-                kereses_listazas();
+                kereses_listazas(*tulajdonosok, *allatok);
                 break;
             case 5:
                 return;
@@ -135,6 +132,13 @@ void fomenu(){
 }
 
 int main(){
+    Tulajdonos *tulajdonosok = NULL;
+    Haziallat *allatok = NULL;
+    Vizsgalat *vizsgalatok = NULL;
+
+    tulajok_ptr = &tulajdonosok;
+    allatok_ptr = &allatok;
+    vizsgalatok_ptr = &vizsgalatok;
     signal(SIGINT, ctrlc_kezeles);
 
     fejlec();
@@ -150,9 +154,9 @@ int main(){
     printf("\nNyomj egy ENTER-t a folytatashoz...");
     getchar();
 
-    fomenu();
+    fomenu(&tulajdonosok, &allatok, &vizsgalatok);
 
     konzol_torol();
-    adat_ment();
-    felszabaditas();
+    adat_ment(tulajdonosok, allatok, vizsgalatok);
+    felszabaditas(&tulajdonosok, &allatok, &vizsgalatok);
 }

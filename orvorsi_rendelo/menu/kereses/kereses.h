@@ -1,6 +1,8 @@
 #ifndef KERESES_H
 #define KERESES_H
 
-void kereses_listazas();
+#include "../../fajlkezeles/fajlkezeles.h"
+
+void kereses_listazas(Tulajdonos *tulajdonosok, Haziallat *allatok);
 
 #endif

@@ -37,6 +37,7 @@ void uj_vizsgalat(Vizsgalat **eleje, Haziallat *allatok){
         }
     } while(!datum_valid(uj->datum));
 
+    getchar();
     printf("Megjegyzes: ");
     fgets(uj->megjegyzes, sizeof(uj->megjegyzes), stdin);
     uj->megjegyzes[strcspn(uj->megjegyzes, "\n")] = 0;
@@ -140,7 +141,11 @@ void vizsgalat_modosit(Vizsgalat *eleje){
     do{
         printf("\nMelyik adatot szeretned modositani (1-2)? ");
         fgets(buffer, sizeof(buffer), stdin);
-        sscanf(buffer, "%d", &valasztas);
+        if(sscanf(buffer, "%d", &valasztas) != 1){
+            printf("Ervenytelen valasztas.\n");
+            valasztas = -1;
+            continue;
+        }
 
         if(valasztas < 1 || valasztas > 2){
             printf("Ervenytelen valasztas!\n");
@@ -163,6 +168,9 @@ void vizsgalat_modosit(Vizsgalat *eleje){
                 fgets(v->megjegyzes, sizeof(v->megjegyzes), stdin);
                 v->megjegyzes[strcspn(v->megjegyzes, "\n")] = 0;
                 break;
+            default:
+                printf("Ervenytelen valasztas!\n");
+                continue;
         }
 
         printf("\nSikeres modositas!\n");
@@ -215,7 +223,12 @@ void vizsgalat_torol(Vizsgalat **eleje){
         do{
             printf("\nMelyiket szeretned torolni (1-%d, 0=MEGSE)? ", talalat_db);
             fgets(buffer, sizeof(buffer), stdin);
-            sscanf(buffer, "%d", &valasztas);
+            if(sscanf(buffer, "%d", &valasztas) != 1){
+                printf("Ervenytelen valasztas!\n");
+                valasztas = -1;
+                continue;
+            }
+            
             if(valasztas == 0){
                 printf("Torles megszakitva.\n");
                 return;
