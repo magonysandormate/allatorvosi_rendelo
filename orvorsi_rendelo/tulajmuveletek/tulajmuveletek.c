@@ -8,6 +8,9 @@
 
 //Új tulajdonos felvétele
 void uj_tulaj(Tulajdonos **eleje){
+    konzol_torol();
+    fejlec();
+
     Tulajdonos *uj = (Tulajdonos*)malloc(sizeof(Tulajdonos));
     uj->allatok = NULL;
     uj->allat_db = 0;
@@ -53,6 +56,9 @@ void uj_tulaj(Tulajdonos **eleje){
 
 //Tulajdonos adatainak módosítása
 void tulaj_modosit(Tulajdonos *eleje){
+    konzol_torol();
+    fejlec();
+    
     printf("Tulajdonos adatainak modositasa\n\n");
 
     char nev[50];
@@ -151,6 +157,9 @@ void tulaj_modosit(Tulajdonos *eleje){
 
 //Tulajdonos törlése
 void tulaj_torol(Tulajdonos **eleje, Haziallat **allatok){
+    konzol_torol();
+    fejlec();
+    
     printf("Tulajdonos torlese\n\n");
 
     char nev[50];
@@ -272,6 +281,9 @@ Tulajdonos *tulaj_keres_id(Tulajdonos *eleje, int id){
 
 //Tulajdonos keresése név alapján
 void tulaj_keres(Tulajdonos *eleje){
+    konzol_torol();
+    fejlec();
+    
     char nev[50];
     printf("\nTulajdonos adatainak listazasa\n\n");
     printf("\nKeresett tulajdonos neve: ");
@@ -298,6 +310,9 @@ void tulaj_keres(Tulajdonos *eleje){
 
 //Egy tulajdonoshoz tartozó összes állat kilistázása
 void tulaj_allatai(Haziallat *allatok){
+    konzol_torol();
+    fejlec();
+    
     printf("Egy tulajdonoshoz tartozo allat(ok) adatai\n\n");
     char nev[50];
     printf("Tulajdonos neve: ");
@@ -314,8 +329,8 @@ void tulaj_allatai(Haziallat *allatok){
             printf("Szuletesi datum: %s\n", allatok->szul);
             printf("Utolso oltas datuma: %s\n", allatok->oltas);
             talalat++;
+            printf("\n");
         }
-        printf("\n");
         allatok = allatok->kov;
     }
 

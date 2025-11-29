@@ -39,6 +39,9 @@ bool email_valid(const char *email);
 bool tel_valid(const char *tel);
 bool datum_valid(const char *datum);
 
+void konzol_torol();
+void fejlec();
+
 int kov_id_tulaj(Tulajdonos *eleje);
 int kov_id_allat(Haziallat *eleje);
 int kov_id_vizsgalat(Vizsgalat *eleje);

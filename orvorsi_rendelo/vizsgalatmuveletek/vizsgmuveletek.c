@@ -19,6 +19,9 @@ Vizsgalat *vizsgalat_keres_id(Vizsgalat *eleje, int id){
 
 //Új vizsgálat felvétele
 void uj_vizsgalat(Vizsgalat **eleje, Haziallat *allatok){
+    konzol_torol();
+    fejlec();
+    
     Vizsgalat *uj = (Vizsgalat*)malloc(sizeof(Vizsgalat));
     uj->kov = NULL;
     uj->allat = NULL;
@@ -72,6 +75,9 @@ void uj_vizsgalat(Vizsgalat **eleje, Haziallat *allatok){
 
 //Vizsgálat módosítása
 void vizsgalat_modosit(Vizsgalat *eleje){
+    konzol_torol();
+    fejlec();
+    
     printf("Vizsgalat modositasa\n\n");
     char datum[50];
     while(true){
@@ -166,6 +172,9 @@ void vizsgalat_modosit(Vizsgalat *eleje){
 
 //Vizsgálat törlése
 void vizsgalat_torol(Vizsgalat **eleje){
+    konzol_torol();
+    fejlec();
+    
     printf("Vizsgalat torlese\n\n");
 
     char datum[50];

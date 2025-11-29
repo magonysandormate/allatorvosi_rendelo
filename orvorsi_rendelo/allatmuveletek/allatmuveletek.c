@@ -20,6 +20,9 @@ Haziallat *allat_keres_id(Haziallat *eleje, int id){
 
 //Új háziállat felvétele
 void uj_allat(Haziallat **eleje, Tulajdonos *tulajok){
+    konzol_torol();
+    fejlec();
+    
     Haziallat *uj = (Haziallat*)malloc(sizeof(Haziallat));
     uj->vizsgalatok = NULL;
     uj->vizsgalat_db = 0;
@@ -85,6 +88,9 @@ void uj_allat(Haziallat **eleje, Tulajdonos *tulajok){
 }
 
 void allat_modosit(Haziallat *eleje, Tulajdonos *tulajok){
+    konzol_torol();
+    fejlec();
+    
     printf("Allat adatainak modositasa\n\n");
     
     char nev[50];
@@ -187,6 +193,9 @@ void allat_modosit(Haziallat *eleje, Tulajdonos *tulajok){
 
 //Háziállat törlése
 void allat_torol(Haziallat **eleje){
+    konzol_torol();
+    fejlec();
+    
     printf("Haziallat torlese\n\n");
 
     char nev[50];
@@ -283,6 +292,9 @@ void allat_torol(Haziallat **eleje){
 
 //Háziállat keresése név alapján
 void allat_keres(Haziallat *eleje){
+    konzol_torol();
+    fejlec();
+    
     printf("Haziallat keresese\n\n");
 
     char nev[50];
@@ -301,8 +313,8 @@ void allat_keres(Haziallat *eleje){
             printf("Utolso oltas: %s\n", eleje->oltas);
             printf("Tulajdonos: %s\n", eleje->tulaj ? eleje->tulaj->nev : "Ismeretlen");
             talalat++;
+            printf("\n");
         }
-        printf("\n");
         eleje = eleje->kov;
     }
 
@@ -312,6 +324,9 @@ void allat_keres(Haziallat *eleje){
 
 //1 évnél régebbi oltású háziállatok listázása
 void regi_oltas(Haziallat *eleje){
+    konzol_torol();
+    fejlec();
+    
     time_t most = time(NULL);
 
     printf("1 evnel regebbi oltasu allatok\n\n");
@@ -341,8 +356,8 @@ void regi_oltas(Haziallat *eleje){
                     printf("Tulajdonos: %s\n", eleje->tulaj ? eleje->tulaj->nev : "Ismeretlen");
                     printf("Telefonszama: %s\n", eleje->tulaj ? eleje->tulaj->tel : "Ismeretlen");
                     talalat++;
+                    printf("\n");
                 }
-                printf("\n");
             }
         }
 

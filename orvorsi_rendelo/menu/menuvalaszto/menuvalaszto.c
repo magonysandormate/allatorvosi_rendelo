@@ -2,18 +2,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "menuvalaszto.h"
+#include "../../fajlkezeles/fajlkezeles.h"
 
 //Az ismétlés elkerülése és a helytakarékosság érdekében ez a függvény hozza létre a menüpontokat
 int menu_valasztas(char *menu_nev, char **menupontok, int be_meret){
     char valasztas[32];
     int visszateres;
     while (true){
-        //Ez a rész biztosítja a konzol törlését, hogy ne látszódjon az előzetesen betöltött menüpont
-        #ifdef _WIN32
-            system("cls");
-        #else
-            system("clear");
-        #endif
+        konzol_torol();
+        fejlec();
 
         printf("%s\n\n", menu_nev);
         for (int i = 0; i < be_meret; i++){

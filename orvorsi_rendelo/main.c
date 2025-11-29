@@ -94,12 +94,7 @@ void felszabaditas(){
 void ctrlc_kezeles(int signum){
     printf("\n\nKilepes megszakitva...");
 
-    #ifdef _WIN32
-        system("cls");
-    #else
-        system("clear");
-    #endif
-
+    konzol_torol();
     adat_ment();
     felszabaditas();
 
@@ -142,10 +137,7 @@ void fomenu(){
 int main(){
     signal(SIGINT, ctrlc_kezeles);
 
-    printf("==================================\n");
-    printf("=  ALLATORVOSI RENDELO RENDSZER  =\n");
-    printf("==================================\n\n");
-
+    fejlec();
     fajl_inic();
 
     //Adatok betöltése
@@ -160,12 +152,7 @@ int main(){
 
     fomenu();
 
-    #ifdef _WIN32
-        system("cls");
-    #else
-        system("clear");
-    #endif
-
+    konzol_torol();
     adat_ment();
     felszabaditas();
 }

@@ -1,4 +1,4 @@
-1;Kovacs Anna;+36301234567;kovacs.anna@gmail.com
+1;Kovacs Anna;+36301234567;kvanna@gmail.com
 2;Nagy Peter;06209876543;nagy.peter@freemail.hu
 3;Toth Eszter;+36705551234;toth.eszter@citromail.hu
 4;Szabo Gabor;06301239876;szabo.gabor@outlook.com

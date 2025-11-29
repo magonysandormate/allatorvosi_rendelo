@@ -38,6 +38,22 @@ bool datum_valid(const char *datum){
     return true;
 }
 
+//Konzol törlése (új menübe belépéskor)
+void konzol_torol(){
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
+}
+
+//Fejléc
+void fejlec(){
+    printf("==================================\n");
+    printf("=  ALLATORVOSI RENDELO RENDSZER  =\n");
+    printf("==================================\n\n");
+}
+
 //Következő Id-k generálása
 int kov_id_tulaj(Tulajdonos *eleje){
     int max_id = 0;
