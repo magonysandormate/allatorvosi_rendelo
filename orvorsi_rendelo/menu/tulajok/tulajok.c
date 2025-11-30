@@ -6,7 +6,7 @@
 #include "../../fajlkezeles/fajlkezeles.h"
 
 //A "Tulajdonosok kezelése" menüpont és annak almenüi
-void tulaj_kezeles(Tulajdonos **tulajdonosok, Haziallat **allatok){
+void tulaj_kezeles(Tulajdonos **tulajdonosok, Haziallat **allatok, Vizsgalat **vizsgalatok){
     char *menupontok[] = {
         "Uj tulajdonos felvetele",
         "Tulajdonos adatainak modositasa",
@@ -30,7 +30,7 @@ void tulaj_kezeles(Tulajdonos **tulajdonosok, Haziallat **allatok){
                 getchar();
                 break;
             case 3:
-                tulaj_torol(tulajdonosok, allatok);
+                tulaj_torol(tulajdonosok, allatok, vizsgalatok);
                 printf("\nNyomj egy ENTER-t a folytatashoz...");
                 getchar();
                 break;

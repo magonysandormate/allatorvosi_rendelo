@@ -3,6 +3,6 @@
 
 #include "../../fajlkezeles/fajlkezeles.h"
 
-void tulaj_kezeles(Tulajdonos **tulajdonosok, Haziallat **allatok);
+void tulaj_kezeles(Tulajdonos **tulajdonosok, Haziallat **allatok, Vizsgalat **vizsgalatok);
 
 #endif

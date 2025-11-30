@@ -114,7 +114,7 @@ void fomenu(Tulajdonos **tulajdonosok, Haziallat **allatok, Vizsgalat **vizsgala
 
         switch (valasztas){
             case 1:
-                tulaj_kezeles(tulajdonosok, allatok);
+                tulaj_kezeles(tulajdonosok, allatok, vizsgalatok);
                 break;
             case 2:
                 allat_kezeles(tulajdonosok, allatok);

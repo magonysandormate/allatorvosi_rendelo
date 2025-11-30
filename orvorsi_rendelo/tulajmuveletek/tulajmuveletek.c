@@ -163,7 +163,7 @@ void tulaj_modosit(Tulajdonos *eleje){
 }
 
 //Tulajdonos törlése
-void tulaj_torol(Tulajdonos **eleje, Haziallat **allatok){
+void tulaj_torol(Tulajdonos **eleje, Haziallat **allatok, Vizsgalat **vizsgalatok){
     konzol_torol();
     fejlec();
     
@@ -234,31 +234,53 @@ void tulaj_torol(Tulajdonos **eleje, Haziallat **allatok){
     fgets(megerosit, sizeof(megerosit), stdin);
 
     if(megerosit[0] == 'i' || megerosit[0] == 'I'){
-        //Először az állatokat töröljük
         if(t->allat_db > 0){
             for(int i = 0; i < t->allat_db; i++){
                 Haziallat *torlendo_allat = t->allatok[i];
 
-                Haziallat *elozo_allat = NULL, *aktualis_allat = *allatok;
-                while (aktualis_allat){
-                    if(aktualis_allat->id == torlendo_allat->id){
+                //Először az állatokhoz tartozó vizsgálatokat töröljük
+                if(torlendo_allat->vizsgalat_db > 0){
+                    for(int j = 0; j < torlendo_allat->vizsgalat_db; j++){
+                        Vizsgalat * torlendo_vizsg = torlendo_allat->vizsgalatok[j];
+
+                        Vizsgalat *elozo_vizsg = NULL, *akt_vizsg = *vizsgalatok;
+                        while(akt_vizsg){
+                            if(akt_vizsg->id == torlendo_vizsg->id){
+                                if(elozo_vizsg){
+                                    elozo_vizsg->kov = akt_vizsg->kov;
+                                } else{
+                                    *vizsgalatok = akt_vizsg->kov;
+                                }
+                                free(akt_vizsg);
+                                break;
+                            }
+                            elozo_vizsg = akt_vizsg;
+                            akt_vizsg = akt_vizsg->kov;
+                        }
+                    }
+                }
+
+                //Aztán az állat(ok) törlése
+                Haziallat *elozo_allat = NULL, *akt_allat = *allatok;
+                while (akt_allat){
+                    if(akt_allat->id == torlendo_allat->id){
                         if(elozo_allat){
-                            elozo_allat->kov = aktualis_allat->kov;
+                            elozo_allat->kov = akt_allat->kov;
                         } else{
-                            *allatok = aktualis_allat->kov;
+                            *allatok = akt_allat->kov;
                         }
 
-                        free(aktualis_allat->vizsgalatok);
-                        free(aktualis_allat);
+                        free(akt_allat->vizsgalatok);
+                        free(akt_allat);
                         break;
                     }
-                    elozo_allat = aktualis_allat;
-                    aktualis_allat = aktualis_allat->kov;
+                    elozo_allat = akt_allat;
+                    akt_allat = akt_allat->kov;
                 }
             }
         }
 
-        //Tulajdonos törlése
+        //Végül a tulajdonos törlése
         Tulajdonos *elozo = NULL, *aktualis = *eleje;
         while(aktualis && aktualis->id != t->id){
             elozo = aktualis;
